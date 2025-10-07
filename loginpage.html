@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestzone - Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('back.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.6);
+      padding: 10px 20px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    .login-container {
+      margin: auto;
+      background: rgba(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 10px black;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background: #ff9800;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .login-container button:hover { background: #ffa726; }
+    #error { color: red; text-align: center; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BESTZONE</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="loginpage.html">Login</a>
+      <a href="Sign-up page.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email ID" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+      <div id="error"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const savedUser = JSON.parse(localStorage.getItem('bestzoneUser'));
+      const email = document.getElementById('email').value;
+      const pass = document.getElementById('password').value;
+      const error = document.getElementById('error');
+
+      if (!savedUser) {
+        error.textContent = "⚠️ No user found. Please sign up first.";
+        return;
+      }
+
+      if (email === savedUser.email && pass === savedUser.password) {
+        localStorage.setItem('isLoggedIn', 'true');
+        alert("✅ Login successful!");
+        window.location.href = "dashboard2.html";
+      } else {
+        error.textContent = "❌ Invalid email or password.";
+      }
+    });
+  </script>
+</body>
+</html>

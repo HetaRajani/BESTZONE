@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bestzone - Women Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('back.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .product {
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product input {
+      width: 50px;
+    }
+
+    .product button {
+      padding: 8px 14px;
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #218838;
+    }
+
+    .footer-email, footer {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    footer a {
+      color: yellow;
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="logo2.jpg" alt="Logo">
+      <h1 style="margin: 0; color: white;">Women Section</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Producs.html">Products</a>
+      <a href="cart.html">🛒 Cart</a>
+    </nav>
+  </header>
+
+  <!-- Title -->
+  <h2>👗 Women Clothes</h2>
+
+  <!-- Product Grid -->
+  <div class="grid">
+    <div class="product">
+      <img src="top.jpg" alt="Top" />
+      <h3>Top</h3>
+      <p>Price: ₹349</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Top', 349)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="saree.jpg" alt="Saree" />
+      <h3>Saree</h3>
+      <p>Price: ₹999</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Saree', 999)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="jeans1.jpg" alt="Jeans" />
+      <h3>Jeans</h3>
+      <p>Price: ₹699</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Jeans', 699)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="kurti.jpg" alt="Kurti" />
+      <h3>Kurti</h3>
+      <p>Price: ₹499</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Kurti', 499)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="dress.jpg" alt="Dress" />
+      <h3>Dress</h3>
+      <p>Price: ₹799</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Dress', 799)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="jac1.jpg" alt="Jacket" />
+      <h3>Jacket</h3>
+      <p>Price: ₹899</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Jacket', 899)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="leginngs.jpg" alt="Leggings" />
+      <h3>Leggings</h3>
+      <p>Price: ₹299</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Leggings', 299)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="plazo.jpg" alt="Palazzo" />
+      <h3>Palazzo</h3>
+      <p>Price: ₹349</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Palazzo', 349)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="night.jpg" alt="Nighty" />
+      <h3>Nighty</h3>
+      <p>Price: ₹449</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Nighty', 449)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="saree2.jpg" alt="Saree 2" />
+      <h3>Saree 2</h3>
+      <p>Price: ₹1000</p>
+      Qty: <input type="number" value="1" min="1" />
+      <button onclick="addToCart(this, 'Saree2', 1000)">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-email">
+    📧 Email: bestzone@gmail.com | 📞 +91 98765 43210
+  </div>
+
+  <footer>
+    <a href="help.html">Any Help❓</a>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function addToCart(button, productName, price) {
+      const productBox = button.closest(".product");
+      const qtyInput = productBox.querySelector("input[type='number']");
+      const quantity = parseInt(qtyInput.value);
+
+      if (isNaN(quantity) || quantity <= 0) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existingItem = cart.find(item => item.name === productName);
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.push({ name: productName, price, quantity });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${productName} added to cart!`);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bestzone - Kids Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('back.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .product {
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product input {
+      width: 50px;
+    }
+
+    .product button {
+      padding: 8px 14px;
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #218838;
+    }
+
+    .footer-email, footer {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    footer a {
+      color: yellow;
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="logo2.jpg" alt="Logo">
+      <h1 style="margin: 0; color: white;">Kids Section</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Producs.html">Products</a>
+      <a href="cart.html">🛒 Cart</a>
+    </nav>
+  </header>
+
+  <!-- Title -->
+  <h2>🧒 Kids Clothes</h2>
+
+  <!-- Product Grid -->
+  <div class="grid" id="kids-grid"></div>
+
+  <!-- Footer -->
+  <div class="footer-email">
+    📧 Email: bestzone@gmail.com | 📞 +91 98765 43210
+  </div>
+
+  <footer>
+    <a href="help.html">Any Help❓</a>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Kids products JSON
+    const kidsProducts = [
+      { name: "T-shirt", price: 299, image: "t-shirt.jpg" },
+      { name: "Frock", price: 399, image: "frock.jpg" },
+      { name: "Jeans", price: 499, image: "jeans.jpg" },
+      { name: "Shorts", price: 259, image: "shorts.jpg" },
+      { name: "Sweater", price: 499, image: "sweater.jpg" },
+      { name: "Jacket", price: 599, image: "jacket.jpg" },
+      { name: "Kurta Set", price: 449, image: "kurtaset.jpg" },
+      { name: "Dungaree", price: 379, image: "dungree.jpg" },
+      { name: "Pajamas", price: 229, image: "payjama.jpg" },
+      { name: "Jacket", price: 500, image: "jacket1.jpg" }
+    ];
+
+    // Render kids products dynamically
+    function renderKidsProducts() {
+      const grid = document.getElementById("kids-grid");
+      grid.innerHTML = "";
+      kidsProducts.forEach(product => {
+        const div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>Price: ₹${product.price}</p>
+          Qty: <input type="number" value="1" min="1" />
+          <button onclick="addToCart(this, '${product.name}', ${product.price})">Add to Cart</button>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    // Add to cart function
+    function addToCart(button, productName, price) {
+      const productBox = button.closest(".product");
+      const qtyInput = productBox.querySelector("input[type='number']");
+      const quantity = parseInt(qtyInput.value);
+
+      if (isNaN(quantity) || quantity <= 0) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existingItem = cart.find(item => item.name === productName);
+
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.push({ name: productName, price, quantity });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${productName} added to cart!`);
+    }
+
+    // Load products on page load
+    document.addEventListener("DOMContentLoaded", renderKidsProducts);
+  </script>
+</body>
+</html>

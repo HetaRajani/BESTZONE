@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment - Bestzone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('back.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    #summary p, .address-box p {
+      font-size: 16px;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .pay-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .pay-btn:hover {
+      background-color: #3e8e41;
+    }
+
+    footer, .footer-email {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      margin-top: 30px;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: yellow;
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .pay-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="logo2.jpg" alt="Logo" />
+      <h1 style="margin: 0; color: white;">BESTZONE</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Producs.html">Products</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="cart.html">🛒 Cart</a>
+      <a href="loginpage.html">Login</a>
+      <a href="sign-up page.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>💳 Payment Summary</h1>
+    <div id="summary"></div>
+    <h2>Total: ₹<span id="totalAmount">0</span></h2>
+
+    <h2>📍 Shipping Address</h2>
+    <form id="paymentForm" onsubmit="submitPayment(event)">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" required>
+
+      <label for="address">Address</label>
+      <textarea id="address" required></textarea>
+
+      <label for="city">City</label>
+      <input type="text" id="city" required>
+
+      <label for="pincode">Pincode</label>
+      <input type="number" id="pincode" required>
+
+      <label for="paymentMethod">Payment Method</label>
+      <select id="paymentMethod" required>
+        <option value="">-- Select --</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="upi">UPI</option>
+      </select>
+
+      <button class="pay-btn" type="submit">Confirm Payment</button>
+    </form>
+  </div>
+
+  <div class="footer-email">
+    📧 Email: bestzone@gmail.com | 📞 +91 98765 43210
+  </div>
+
+  <footer>
+    <div class="socials">
+      <a href="#" title="Instagram">📸</a>
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Privacy Policy">🔒</a>
+    </div>
+    <div style="font-size: 14px; margin-top: 10px;">&copy; 2025 Bestzone. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const summary = document.getElementById("summary");
+    let total = 0;
+
+    if (cart.length === 0) {
+      summary.innerHTML = "<p>No items in cart!</p>";
+    }
+
+    cart.forEach(item => {
+      const subtotal = item.price * item.quantity;
+      total += subtotal;
+
+      const line = document.createElement("p");
+      line.textContent = `${item.name} x ${item.quantity} = ₹${subtotal}`;
+      summary.appendChild(line);
+    });
+
+    document.getElementById("totalAmount").textContent = total;
+
+    function submitPayment(event) {
+      event.preventDefault();
+      alert("✅ Payment successful! Order confirmed.");
+      localStorage.removeItem("cart");
+      window.location.href = "homepage.html";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bestzone</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('back.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: #ff9800;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero button {
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 90%;
+      max-width: 350px;
+      margin: 50px auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .carousel-wrapper {
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      color: white;
+    }
+
+    .carousel-item img {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      margin-top: 10px;
+      object-fit: cover;
+    }
+
+    .category-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      background-color: #2600ff;
+      color: white;
+      border: none;
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .carousel-btn.left {
+      left: 10px;
+    }
+
+    .carousel-btn.right {
+      right: 10px;
+    }
+
+    .reviews {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .review {
+      margin: 10px auto;
+      max-width: 600px;
+      font-style: italic;
+    }
+
+    .footer-email, footer {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      margin-top: 30px;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: yellow;
+      font-size: 24px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="logo2.jpg" alt="Logo">
+      <h1 style="margin: 0; color: white;">BESTZONE</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Producs.html">Products</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">🛒 Cart</a>
+      <a href="loginpage.html">Login</a>
+      <a href="sign-up page.html">Sign Up</a>
+      <a href="dashboard2.html">Dashboard</a> <!-- ✅ Added Dashboard -->
+      <a href="faq.html">FAQs</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Bestzone</h1>
+    <p>Where Shopping Meets Simplicity</p>
+    <button onclick="location.href='Producs.html'">Shop Now</button>
+  </section>
+
+  <!-- Categories Carousel Slider -->
+  <section class="carousel-container">
+    <button class="carousel-btn left" id="prevBtn">&#10094;</button>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-item">
+          <a href="cloths.html" style="text-decoration: none; color: white;">
+            <div class="category-title">👕 Clothes</div>
+            <img src="cloths.jpeg" alt="Clothes">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <div class="category-title">⌚ Watches</div>
+          <img src="watches.jpg" alt="Watches">
+        </div>
+        <div class="carousel-item">
+          <div class="category-title">🎮 Accessories</div>
+          <img src="accessories.jpg" alt="Accessories">
+        </div>
+        <div class="carousel-item">
+          <div class="category-title">📚 Books</div>
+          <img src="books.jpg" alt="Books">
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-btn right" id="nextBtn">&#10095;</button>
+  </section>
+
+  <script>
+    const track = document.getElementById("carouselTrack");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let index = 0;
+    const items = document.querySelectorAll(".carousel-item");
+    const totalItems = items.length;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index++;
+      if (index >= totalItems) index = 0;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      index--;
+      if (index < 0) index = totalItems - 1;
+      updateCarousel();
+    });
+
+    setInterval(() => {
+      index++;
+      if (index >= totalItems) index = 0;
+      updateCarousel();
+    }, 4000);
+  </script>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="review">"Excellent service and quality!" ⭐⭐⭐⭐⭐</div>
+    <div class="review">"Loved the shopping experience." ⭐⭐⭐⭐</div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer-email">
+    📧 Email: bestzone@gmail.com | 📞 +91 98765 43210
+  </div>
+
+  <footer>
+    <div class="socials">
+      <a href="#" title="Instagram">📸</a>
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Privacy Policy">🔒</a>
+    </div>
+    <div style="font-size: 14px; margin-top: 10px;">&copy; 2025 Bestzone. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>

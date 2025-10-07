@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestzone - Products</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('back.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    header h2 {
+      margin: 0;
+      color: white;
+    }
+
+    header a {
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-top: 30px;
+    }
+
+    .category-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin: 30px;
+    }
+
+    .category {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 200px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .category:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+    }
+
+    .category img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .category h3 {
+      color: #fff;
+      margin: 10px 0;
+    }
+
+    .category button {
+      background-color: #2b00ff;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .category button:hover {
+      background-color: #0023e6;
+    }
+
+    @media (max-width: 768px) {
+      .category-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="logo2.jpg" alt="Logo">
+      <h2>Bestzone - Products</h2>
+    </div>
+    <div>
+      <a href="index.html">🏠 Home</a>
+    </div>
+  </header>
+
+  <!-- Clothes Section -->
+  <h2>👕 Clothes</h2>
+  <div class="category-section">
+    <div class="category">
+      <a href="kids.html" style="text-decoration: none; color: white;">
+        <img src="kids.jpg" alt="Kids Clothes">
+        <h3>Kids</h3>
+        <button>Shop Now</button>
+      </a>
+    </div>
+    <div class="category">
+      <a href="women.html" style="text-decoration: none; color: white;">
+        <img src="women.jpg" alt="Women Clothes">
+        <h3>Women</h3>
+        <button>Shop Now</button>
+      </a>
+    </div>
+    <div class="category">
+      <a href="mens.html" style="text-decoration: none; color: white;">
+        <img src="man.jpg" alt="Men Clothes">
+        <h3>Men</h3>
+        <button>Shop Now</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- Books Section -->
+  <h2>📚 Books</h2>
+  <div class="category-section">
+    <div class="category">
+      <a href="books.html" style="text-decoration: none; color: white;">
+        <img src="books.jpg" alt="Books">
+        <h3>Books</h3>
+        <button>Shop Now</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- Watches Section -->
+  <h2>⌚ Watches</h2>
+  <div class="category-section">
+    <div class="category">
+      <a href="manw.html" style="text-decoration: none; color: white;">
+        <img src="manw.jpg" alt="Men's Watches">
+        <h3>Men's Watches</h3>
+        <button>Shop Now</button>
+      </a>
+    </div>
+    <div class="category">
+      <a href="womenw.html" style="text-decoration: none; color: white;">
+        <img src="womanw.jpg" alt="Women's Watches">
+        <h3>Women's Watches</h3>
+        <button>Shop Now</button>
+      </a>
+    </div>
+  </div>
+  <script>
+    // JSON data (can be fetched from a file in real projects)
+    const data = {
+      "products": [
+        { "id": "C101", "name": "Men's T-Shirt", "category": "Clothes", "price": 499 },
+        { "id": "C102", "name": "Women's Jeans", "category": "Clothes", "price": 999 },
+        { "id": "B101", "name": "Fictional Novel", "category": "Books", "price": 299 },
+        { "id": "B102", "name": "Philosophy Book", "category": "Books", "price": 399 },
+        { "id": "W101", "name": "Men's Watch", "category": "Watches", "price": 1599 },
+        { "id": "W102", "name": "Women's Watch", "category": "Watches", "price": 1799 }
+      ]
+    };
+
+    // Function to display products
+    function renderProducts(products) {
+      const container = document.getElementById("product-list");
+      container.innerHTML = ""; // Clear old data
+
+      products.forEach(product => {
+        const div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+          <strong>${product.name}</strong><br>
+          Category: ${product.category}<br>
+          Price: ₹${product.price}
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Render all products
+    renderProducts(data.products);
+
+    // Example: Filtering products (like your practical)
+    const clothesOnly = data.products.filter(p => p.category === "Clothes");
+    console.log("Clothes category:", clothesOnly);
+  </script>
+
+
+</body>
+</html>
